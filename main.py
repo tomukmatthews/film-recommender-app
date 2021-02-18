@@ -63,8 +63,15 @@ elif option == "Personal Recommendations":
 
         st.sidebar.write("Choose recommendation focus")
         cast_weight, director_weight, keywords_weight, overview_weight, user_embedding_weight = add_parameter_controls(
-            streamlit=st, min_value=0.0, max_value=1.0, default_value=0.5
+            streamlit=st,
+            min_value=config.PARAMETER_CONTROL_MIN,
+            max_value=config.PARAMETER_CONTROL_MAX,
+            default_value=config.PARAMETER_CONTROL_DEFAULT,
         )
+        with st.sidebar.beta_expander("Click to see how this works:"):
+            st.write(config.APP_EXPLANATION_1)
+            st.write(config.APP_EXPLANATION_2)
+            st.write(config.SOURCE_CODE_LINK)
         sim_matrices = [
             cast_similarity,
             director_similarity,
