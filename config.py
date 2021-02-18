@@ -43,7 +43,7 @@ APP_EXPLANATION_1 = "This is a hybrid content / collaborative based recommender 
                     features describing each film. \
                     It also considers the films liked by users with similar preferences (collaborative based). Specifically, dimensionality reduction is performed on \
                     the set of user-film interactions to create a representative set of users that encode the preferences of the population."
-APP_EXPLANATION_2 = "Each of these approaches are used to construct similarity matrices, with the rows and columns being the films and the numbers being how similar they each \
+APP_EXPLANATION_2 = "Each of these approaches are used to construct similarity matrices, with the rows and columns being the films and the numbers being how similar each \
                     film is to another on a scale of 0-1. The net similarity is given by the average of these similarity matrices and the parameter controls allow you to define \
                     how much weighting to give each method of similarity."
 
