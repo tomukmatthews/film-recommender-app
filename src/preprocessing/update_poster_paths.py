@@ -1,6 +1,6 @@
 import pandas as pd
 
-from preprocessing.utils import update_poster_paths
+from src.preprocessing.utils import update_poster_paths
 
 try:
     dataframe = pd.read_csv("data/updated_poster_paths.csv")

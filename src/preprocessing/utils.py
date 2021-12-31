@@ -9,7 +9,7 @@ import numpy as np
 from tqdm import tqdm
 import tmdbsimple as tmdb
 
-import config
+from src import config
 
 tmdb.API_KEY = config.TMDB_API_KEY
 
@@ -32,13 +32,6 @@ def get_list(x):
 
     # Return empty list in case of missing/malformed data
     return []
-
-
-def weighted_rating(x, m, C):
-    v = x["vote_count"]
-    R = x["vote_average"]
-    # Calculation based on the IMDB formula
-    return (v / (v + m) * R) + (m / (m + v) * C)
 
 
 def assign_poster_path(row: pd.Series) -> Tuple[str, bool]:

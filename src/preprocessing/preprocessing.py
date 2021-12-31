@@ -2,16 +2,28 @@ import pandas as pd
 from ast import literal_eval
 import tmdbsimple as tmdb
 
-from utils import get_director, get_list
-import config
+from src.preprocessing.utils import get_director, get_list
+from src import config
 
 tmdb.API_KEY = config.TMDB_API_KEY
 
+C = 5.6  # Mean vote score.
+m = 156  # 90th percentile of number of votes
 
-def weighted_rating(x, m, C):
+
+def weighted_rating(x: pd.Series, m: int, C: float) -> float:
+    """Rates a of film accounting for the the number of votes and the scores of the votes.
+
+    Args:
+        x (pd.Series): Row of film dataframe.
+        m (int): 90th percentile of number of votes
+        C (float): Mean vote score
+
+    Returns:
+        float: Weighted rating of a film.
+    """
     v = x["vote_count"]
     R = x["vote_average"]
-    # Calculation based on the IMDB formula
     return (v / (v + m) * R) + (m / (m + v) * C)
 
 
@@ -72,6 +84,6 @@ film_features = film_features.drop(
 
 film_features = film_features.head(n=config.NUM_FILMS_TO_KEEP)
 
-assert len(film_features) == film_features.id.nunique(), "Contains duplicate movies"
+assert len(film_features) == film_features.id.nunique(), "Contains duplicate film"
 
-film_features.to_csv("film_features/film_features.csv", index=False)
+film_features.to_csv("data/film_features.csv", index=False)

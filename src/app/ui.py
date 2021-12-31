@@ -29,7 +29,7 @@ option = film_display_option.radio(
     index=film_selector,
 )
 
-# Main
+# Main app
 st.title("Film Recommender System")
 cast_options, director_options, genres_options = get_filter_values(filtered_films)
 cast_default, director_default, genres_default = get_filter_values(data)

@@ -1,9 +1,20 @@
+from typing import List, Tuple
 import pandas as pd
+import streamlit as st
 
 from src import config
 
 
 def display_film_posters(streamlit, data: pd.DataFrame, num_rows: int, posters_per_row: int):
+    """Populates main page with film posters and expandable titles below showing the tile, directors, release date,
+    cast, keywords and rating.
+
+    Args:
+        streamlit: Streamlit package for modifying layout.
+        data (pd.DataFrame): Films dataframe.
+        num_rows (int): Number of rows of posters to layout.
+        posters_per_row (int): Number of columns of posters to layout per row.
+    """
     posters = data.poster_path.head(n=num_rows * posters_per_row).to_list()
     titles = data.title.head(n=num_rows * posters_per_row).to_list()
     directors = data.director.head(n=num_rows * posters_per_row).to_list()
@@ -40,7 +51,15 @@ def display_film_posters(streamlit, data: pd.DataFrame, num_rows: int, posters_p
                 break
 
 
-def display_text(streamlit, text_list):
+def display_text(streamlit, text_list: List[str]):
+    """
+    Args:
+        streamlit: Streamlit package for modifying layout.
+        text_list (List[str]): List of strings to write as bold.
+
+    Returns:
+        [type]: [description]
+    """
     if not isinstance(text_list, list):
         text_list = list(text_list)
     for text in text_list:
@@ -48,7 +67,20 @@ def display_text(streamlit, text_list):
     return streamlit
 
 
-def display_parameter_controls(streamlit, min_value: float, max_value: float, default_value: float):
+def display_parameter_controls(
+    streamlit, min_value: float, max_value: float, default_value: float
+) -> Tuple[st.sidebar.slider, ...]:
+    """Displays sliders for controlling parameters of the recommender.
+
+    Args:
+        streamlit: Streamlit package for modifying layout.
+        min_value (float): Slider minimum value.
+        max_value (float): Slider maximum value.
+        default_value (float): Default (initial) slider value.
+
+    Returns:
+        Tuple[st.sidebar.slider, ...]: Slider objects.
+    """
     col1, col2 = streamlit.sidebar.columns(2)
     director = col1.slider(
         label="Director", min_value=min_value, max_value=max_value, value=default_value

@@ -1,12 +1,13 @@
-import pandas as pd
 from ast import literal_eval
 
-from utils import (
+import pandas as pd
+
+from src.utils import (
     replace_spaces_with_underscores,
     get_vectorized_text_array,
     get_similarity_matrix,
 )
-import config
+from src import config
 
 data = pd.read_csv("film_features/film_features.csv")
 

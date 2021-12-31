@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import TruncatedSVD
 
-import config
+from src import config
 
 data = pd.read_csv("film_features/film_features.csv")
 ratings = pd.read_csv("data/ratings.csv")
