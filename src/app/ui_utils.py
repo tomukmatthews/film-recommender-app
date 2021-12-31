@@ -1,6 +1,6 @@
 import pandas as pd
 
-import config
+from src import config
 
 
 def display_film_posters(streamlit, data: pd.DataFrame, num_rows: int, posters_per_row: int):
@@ -15,7 +15,7 @@ def display_film_posters(streamlit, data: pd.DataFrame, num_rows: int, posters_p
     posters = [config.POSTER_BASE_URL + poster for poster in posters]
 
     for row in range(num_rows):
-        cols = streamlit.beta_columns(posters_per_row)
+        cols = streamlit.columns(posters_per_row)
         all_posters_shown = len(posters) < row * posters_per_row
         if all_posters_shown:
             break
@@ -26,7 +26,7 @@ def display_film_posters(streamlit, data: pd.DataFrame, num_rows: int, posters_p
                 index = idx + (row * posters_per_row)
                 # streamlit.write(index)
                 col.image(posters[index], use_column_width=True)
-                with col.beta_expander(f"{titles[index]}: {rating[index]}"):
+                with col.expander(f"{titles[index]}: {rating[index]}"):
                     streamlit.markdown(f"**Director:** {directors[index]}")
                     cast_string = cast[index].replace("[", "").replace("]", "").replace("'", "")
                     keywords_string = (
@@ -49,7 +49,7 @@ def display_text(streamlit, text_list):
 
 
 def display_parameter_controls(streamlit, min_value: float, max_value: float, default_value: float):
-    col1, col2 = streamlit.sidebar.beta_columns(2)
+    col1, col2 = streamlit.sidebar.columns(2)
     director = col1.slider(
         label="Director", min_value=min_value, max_value=max_value, value=default_value
     )

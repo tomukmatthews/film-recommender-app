@@ -1,10 +1,13 @@
 from io import BytesIO
+from typing import Tuple
+from PIL import Image
 import time
+import requests
 
 import pandas as pd
+import numpy as np
 from tqdm import tqdm
 import tmdbsimple as tmdb
-from PIL import Image
 
 import config
 
@@ -38,7 +41,7 @@ def weighted_rating(x, m, C):
     return (v / (v + m) * R) + (m / (m + v) * C)
 
 
-def assign_poster_path(row):
+def assign_poster_path(row: pd.Series) -> Tuple[str, bool]:
     poster_path = row.poster_path
     poster_path_updated = True
     try:
@@ -55,7 +58,7 @@ def assign_poster_path(row):
     return poster_path, poster_path_updated
 
 
-def update_poster_paths(dataframe, runtime_seconds):
+def update_poster_paths(dataframe: pd.DataFrame, runtime_seconds: int) -> pd.DataFrame:
     films_updated = dataframe[dataframe["poster_path_updated"]]
     films_not_updated = dataframe[~dataframe["poster_path_updated"]]
 

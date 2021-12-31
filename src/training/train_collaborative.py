@@ -1,13 +1,8 @@
 import pandas as pd
-import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import TruncatedSVD
 
 import config
-from utils import (
-    generate_weighted_similarity_matrix,
-    get_recommendations,
-)
 
 data = pd.read_csv("film_features/film_features.csv")
 ratings = pd.read_csv("data/ratings.csv")

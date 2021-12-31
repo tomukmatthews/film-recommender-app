@@ -1,10 +1,6 @@
 import pandas as pd
 from ast import literal_eval
-from tqdm import tqdm
 import tmdbsimple as tmdb
-import time
-from PIL import Image
-from io import BytesIO
 
 from utils import get_director, get_list
 import config
@@ -17,42 +13,6 @@ def weighted_rating(x, m, C):
     R = x["vote_average"]
     # Calculation based on the IMDB formula
     return (v / (v + m) * R) + (m / (m + v) * C)
-
-
-def assign_poster_path(row):
-    poster_path = row.poster_path
-    poster_path_updated = True
-    try:
-        response = requests.get(config.POSTER_BASE_URL + poster_path)
-        Image.open(BytesIO(response.content))
-    except:
-        try:
-            movie = tmdb.Movies(int(row.id))
-            response = movie.info()
-            poster_path = movie.poster_path
-        except Exception as e:
-            print(e)
-            poster_path_updated = False
-    return poster_path, poster_path_updated
-
-
-def update_poster_paths(dataframe, runtime_seconds):
-    films_updated = dataframe[dataframe["poster_path_updated"]]
-    films_not_updated = dataframe[~dataframe["poster_path_updated"]]
-
-    with tqdm(total=films_not_updated.shape[0]) as pbar:
-        start = time.time()
-        for row in films_not_updated.itertuples():
-            if time.time() <= start + runtime_seconds:
-                pbar.update(1)
-                (
-                    films_not_updated.at[row.Index, "poster_path"],
-                    films_not_updated.at[row.Index, "poster_path_updated"],
-                ) = assign_poster_path(row)
-            else:
-                break
-    dataframe = pd.concat([films_updated, films_not_updated])
-    return dataframe
 
 
 # Load keywords and credits

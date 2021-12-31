@@ -1,16 +1,12 @@
 import pandas as pd
 import numpy as np
-import requests
 import tmdbsimple as tmdb
-from PIL import Image
-from io import BytesIO
-from tqdm import tqdm
-import time
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import streamlit as st
 from sklearn.metrics.pairwise import cosine_similarity
 
-import config
+from src import config
+
 
 tmdb.API_KEY = config.TMDB_API_KEY
 

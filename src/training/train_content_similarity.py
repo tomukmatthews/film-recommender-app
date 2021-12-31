@@ -1,13 +1,9 @@
 import pandas as pd
-import numpy as np
 from ast import literal_eval
-from sklearn.metrics.pairwise import cosine_similarity
 
 from utils import (
     replace_spaces_with_underscores,
     get_vectorized_text_array,
-    generate_weighted_similarity_matrix,
-    get_recommendations,
     get_similarity_matrix,
 )
 import config
