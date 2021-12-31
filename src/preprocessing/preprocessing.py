@@ -7,9 +7,6 @@ from src import config
 
 tmdb.API_KEY = config.TMDB_API_KEY
 
-C = 5.6  # Mean vote score.
-m = 156  # 90th percentile of number of votes
-
 
 def weighted_rating(x: pd.Series, m: int, C: float) -> float:
     """Rates a of film accounting for the the number of votes and the scores of the votes.
