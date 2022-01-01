@@ -1,8 +1,12 @@
+import sys
+import os
+
 from pandas.api.types import CategoricalDtype
 import streamlit as st
 
-from src.app.ui_utils import display_film_posters, display_parameter_controls
-from src.utils import (
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+from app.ui_utils import display_film_posters, display_parameter_controls
+from utils import (
     load_data,
     load_similarity_matrices,
     generate_weighted_similarity_matrix,
@@ -10,7 +14,7 @@ from src.utils import (
     get_filter_values,
     apply_filters,
 )
-from src import config
+import config
 
 st.set_page_config(layout="wide")
 

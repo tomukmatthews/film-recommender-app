@@ -1,8 +1,12 @@
+import sys
+import os
 from typing import List, Tuple
+
 import pandas as pd
 import streamlit as st
 
-from src import config
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+import config
 
 
 def display_film_posters(streamlit, data: pd.DataFrame, num_rows: int, posters_per_row: int):
@@ -56,9 +60,6 @@ def display_text(streamlit, text_list: List[str]):
     Args:
         streamlit: Streamlit package for modifying layout.
         text_list (List[str]): List of strings to write as bold.
-
-    Returns:
-        [type]: [description]
     """
     if not isinstance(text_list, list):
         text_list = list(text_list)

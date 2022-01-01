@@ -1,13 +1,16 @@
 from ast import literal_eval
+import sys
+import os
 
 import pandas as pd
 
-from src.utils import (
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+from utils import (
     replace_spaces_with_underscores,
     get_vectorized_text_array,
     get_similarity_matrix,
 )
-from src import config
+import config
 
 data = pd.read_csv("film_features/film_features.csv")
 

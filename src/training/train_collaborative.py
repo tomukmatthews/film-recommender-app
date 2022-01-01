@@ -1,8 +1,12 @@
+import sys
+import os
+
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import TruncatedSVD
 
-from src import config
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+import config
 
 data = pd.read_csv("film_features/film_features.csv")
 ratings = pd.read_csv("data/ratings.csv")
