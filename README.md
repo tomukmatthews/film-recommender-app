@@ -1,7 +1,7 @@
 
 ![Python 3.8](https://img.shields.io/badge/python-3.8-blue.svg) <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
-This is an app for recommending movies based from users selecting movies they already like. [**Try the app here.**](https://share.streamlit.io/tomukmatthews/film-recommender-system/main.py)
+This is an app for recommending movies based from users selecting movies they already like. [**Try the app here.**](https://share.streamlit.io/tomukmatthews/film-recommender-app/src/app/ui.py)
 
 The recommendations are from a hybrid content / collaborative based recommender system. It uses text based metadata from the films (content based) such as cast, director, keywords and overview descriptive text. It then applies NLP methods (TF-IDF) to compute features describing each film. It also considers the films liked by users with similar preferences (collaborative based).
 
