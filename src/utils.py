@@ -1,3 +1,6 @@
+import sys
+import os
+
 import pandas as pd
 import numpy as np
 import tmdbsimple as tmdb
@@ -5,7 +8,10 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import streamlit as st
 from sklearn.metrics.pairwise import cosine_similarity
 
-from src import config
+import pandas as pd
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+import config
 
 
 tmdb.API_KEY = config.TMDB_API_KEY

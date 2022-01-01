@@ -1,6 +1,10 @@
+import sys
+import os
+
 import pandas as pd
 
-from src.preprocessing.utils import update_poster_paths
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+from preprocessing.utils import update_poster_paths
 
 try:
     dataframe = pd.read_csv("data/updated_poster_paths.csv")

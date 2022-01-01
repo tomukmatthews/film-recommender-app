@@ -3,13 +3,16 @@ from typing import Tuple
 from PIL import Image
 import time
 import requests
+import sys
+import os
 
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
 import tmdbsimple as tmdb
 
-from src import config
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+import config
 
 tmdb.API_KEY = config.TMDB_API_KEY
 

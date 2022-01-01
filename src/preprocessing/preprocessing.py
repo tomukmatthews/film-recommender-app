@@ -1,9 +1,13 @@
-import pandas as pd
+import sys
+import os
 from ast import literal_eval
+
+import pandas as pd
 import tmdbsimple as tmdb
 
-from src.preprocessing.utils import get_director, get_list
-from src import config
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+from preprocessing.utils import get_director, get_list
+import config
 
 tmdb.API_KEY = config.TMDB_API_KEY
 
